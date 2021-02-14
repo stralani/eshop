@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button [routerLink]="'/'">Home</a>
+    <a mat-button [routerLink]="'/items'">Items</a>
+    <a mat-button *ngIf="!user?.firebaseUser" [routerLink]="'/login'">Login</a>
+    <a mat-button *ngIf="user?.firebaseUser" [matMenuTriggerFor]="Menu">{{user?.firebaseUser?.email}}</a>
+    <mat-menu #Menu="matMenu">
+
+      <button mat-menu-item [routerLink]="'/admin-items'" *ngIf="user.isAdmin">Admin-items</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+
+    </mat-menu>
+    <a mat-button *ngIf="!user?.firebaseUser" [routerLink]="'/register'">Register</a>
+    <a mat-button [routerLink]="'/about'">About</a>
+    <a mat-button [routerLink]="'/shopping-cart'">{{ numberOfItems }}<i class="material-icons">add_shopping_cart</i></a>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>

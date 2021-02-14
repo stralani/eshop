@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="h1 text-center">Shopping Cart</h1>
+
+  <div *ngIf="items.length == 0" class="alert alert-warning text-center" role="alert">
+    <p>No Items in the shopping card!</p>
+    <hr>
+    <p class="mb-0">Keep shopping!</p>
+  </div>
+
+  <ul *ngIf="items.length > 0">
+    <li *ngFor="let item of items; let i = index">
+      {{ item.title }}<br>
+      <img id="image" [src]="item.urlImage" />
+      <br><br> price : {{item.price | currency}}
+      <button mat-raised-button color="warn" (click)="deleteItem(+i)">Delete</button>
+    </li>
+
+    <p>Total : {{ total }}</p>
+
+  </ul>
+
+</div>

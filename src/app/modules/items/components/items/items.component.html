@@ -1,0 +1,24 @@
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+<mat-tab-group>
+  <mat-tab *ngFor="let categorie of categories; let i = index;" [label]="categorie.label">
+    <h1>{{ categorie.label }}</h1>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <ng-container *ngFor="let item of getItemsByCategorie(categorie.label)">
+        <mat-grid-tile>
+          <div class="card" style="width: 18rem">
+            <img class="card-img-top image" [src]="item.urlImage" />
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.discription }}</p>
+              {{item.price | currency}}
+              <button mat-raised-button color="accent" (click)="addItem(item)">Add Item</button>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>
